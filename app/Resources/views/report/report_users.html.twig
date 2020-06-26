@@ -1,0 +1,18 @@
+<page backtop="35mm" backleft="10mm" backbottom="30mm" backright="10mm">
+
+    <page_header>Encabezado del Reporte</page_header>
+
+    <page_footer>Pie de Pagina del Reporte</page_footer>
+
+    <table style="border: 1 sold #CCC">
+        <tr>
+            <th>Nombre</th>
+        </tr>
+        {% for item in list %}
+            <tr>
+                <td>{{item.name}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+</page>

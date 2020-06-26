@@ -1,0 +1,39 @@
+
+{% extends "baseAdminLTE.html.twig" %}
+
+{% block title %}NOVC - Carrito
+{% endblock %}
+{% block title_page%}Carrito de Compras
+{% endblock %}
+
+{% block container %}
+	<div class="col-lg-12">
+		<div class="card">
+			<div class="card-body">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Course</th>
+							<th>Precio</th>
+							<th>Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% set total = 0 %}
+						{% for course in list_carshopping %}
+							<tr>
+								<td scope="row">{{course.title}}</td>
+								<td>{{course.price}}</td>
+								<td> <a class="btn btn-danger" href="{{path('app_student_carshopping_delete',{'code':course.id})}}">
+               					 <i class="fa fa-trash"></i></a></td>
+							</tr>
+						{% set total = total + course.price %}
+					{% endfor %}
+					</tbody>
+				</table>
+				<h3> TOTAL A PAGAR: $ {{total}} </h3>
+				<a href="{{ path('app_student_payment_demo')}}" class="btn btn-primary"> Test Pagar (Sin Simular Nada)</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}

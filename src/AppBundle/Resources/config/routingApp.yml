@@ -1,0 +1,104 @@
+ ### MIS RUTAS DE LA APLICACIÓN
+ ## ESTAS SON LAS RUTAS QUE SE PONEN EN EL NAVEGADOR
+
+## Donde dice welcome, no se tiene que poner igual donde dice name, pero name si debe coincidir con
+## el nombre de la function en el DefaultController y siempre deben llevar la palabra action 
+
+
+app_index:
+    path: /
+    defaults: { _controller: AppBundle:Default:index }
+
+app_welcome:
+    path: /welcome/{name}
+    defaults: { _controller: AppBundle:Default:name , name:Anónimo }
+
+app_user_create:
+    path: /register
+    defaults: { _controller: AppBundle:User:createUser }
+
+app_admin_user:
+    path: /admin/user
+    defaults: { _controller: AppBundle:User:listUser }
+
+app_admin_report_user:
+    path: /admin/report/user
+    defaults: { _controller: AppBundle:User:reportUser }
+
+app_admin_category:
+    path: /admin/category
+    defaults: { _controller: AppBundle:Category:category }
+
+app_admin_lang:
+    path: /admin/lang
+    defaults: { _controller: AppBundle:Lang:lang }
+
+app_admin_subcategory_delete:
+    path: /admin/subcategory-delete/{id}
+    defaults: { _controller: AppBundle:Subcategory:subcategoryDelete }
+
+app_admin_subcategory:
+    path: /admin/subcategory
+    defaults: { _controller: AppBundle:Subcategory:subcategory }
+
+#RUTAS PARA CURSOS
+
+app_teacher_course:
+    path: /teacher/course
+    defaults: { _controller: AppBundle:Course:course }
+
+app_teacher_dashboard:
+    path: /teacher/dashboard
+    defaults: { _controller: AppBundle:Teacher:dashboard }
+
+app_teacher_course_delete:
+    path: /teacher/course/delete/{id}
+    defaults: { _controller: AppBundle:Course:delete }
+
+app_teacher_course_edit:
+    path: /teacher/course/edit/{id}
+    defaults: { _controller: AppBundle:Course:edit }
+
+app_teacher_course_details:
+    path: /teacher/course/details/{id}
+    defaults: { _controller: AppBundle:Course:details }
+
+#RUTAS PARA STUDENT
+
+app_student_carshopping_add:
+    path: /student/car-shopping/add/{code}
+    defaults: { _controller: AppBundle:CarShopping:addCar }
+
+app_student_carshopping:
+    path: /student/car-shopping
+    defaults: { _controller: AppBundle:CarShopping:showCar }
+
+app_student_carshopping_delete:
+    path: /student/car-shopping/delete/{code}
+    defaults: { _controller: AppBundle:CarShopping:deleteCar }
+
+app_student_payment_demo:
+    path: /student/car-shopping/payment
+    defaults: { _controller: AppBundle:CarShopping:paymentDemo }
+
+app_student_mycourses:
+    path: /student/my-courses
+    defaults: { _controller: AppBundle:Student:myCourses }
+
+
+#RUTAS PARA AUTH
+
+login:
+    path: /ulogin
+    defaults: { _controller: AppBundle:Default:login  }
+
+login_check:
+    path: /login_check
+
+logout:
+    path: /ulogout
+
+
+app_dashboard:
+    path: /dashboard
+    defaults: { _controller: AppBundle:Default:dashboard }

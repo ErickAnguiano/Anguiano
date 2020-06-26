@@ -1,0 +1,24 @@
+{% extends "baseAdminLTE.html.twig" %}
+
+{% block title %}NOVC- Mis cursos {% endblock %}
+{% block title_page%}Dashboard{% endblock %}
+
+
+{% block container %}
+	<div class="row">
+		{% for coursesaledetails in list_mycourses %}
+			<div class="col-lg-4">
+				<div class="card">
+					<img class="card-img-top" src="{{asset('uploads/img/'~ coursesaledetails.course.image )}}">
+					<div>
+						<h4 class="card-title">{{coursesaledetails.course.title}}</h4></br>
+					</div>
+
+					<div class="card-footer">
+
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

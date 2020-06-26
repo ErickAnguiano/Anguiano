@@ -1,0 +1,39 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    encoders:
+        #Para indicar como se incripta la contraseña
+        AppBundle\Entity\User:
+            algorithm: bcrypt
+            cost: 4
+    providers:
+        user_bd_provider:
+            entity:
+                class: AppBundle\Entity\User
+                property: email
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            # activate different ways to authenticate
+            provider: user_bd_provider
+            #Donde está el formulario de login
+            form_login:
+                login_path: /ulogin
+                check_path: /login_check
+            #Como se cerrara sesion
+            logout:
+                path: /ulogout
+                target: /
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+            #http_basic: ~
+
+            # https://symfony.com/doc/current/security/form_login_setup.html
+            #form_login: ~

@@ -1,0 +1,64 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * CourseActivity
+ *
+ * @ORM\Table(name="course_activity", indexes={@ORM\Index(name="section", columns={"section"})})
+ * @ORM\Entity
+ */
+class CourseActivity
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=150, nullable=false)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", length=65535, nullable=false)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="video", type="string", length=50, nullable=true)
+     */
+    private $video;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="document", type="string", length=50, nullable=true)
+     */
+    private $document;
+
+    /**
+     * @var \CourseSection
+     *
+     * @ORM\ManyToOne(targetEntity="CourseSection")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="section", referencedColumnName="id")
+     * })
+     */
+    private $section;
+
+
+}
+

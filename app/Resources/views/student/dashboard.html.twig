@@ -1,0 +1,25 @@
+{% extends "baseAdminLTE.html.twig" %}
+
+{% block title %}NOVC- Dashboard {% endblock %}
+{% block title_page%}Dashboard{% endblock %}
+
+
+{% block container %}
+	<div class="row">
+		{% for course in list_courses %}
+			<div class="col-lg-4">
+				<div class="card">
+					<img class="card-img-top" src="{{asset('uploads/img/'~ course.image )}}">
+					<div>
+						<h4 class="card-title">{{course.title}}</h4></br>
+						<h4> {{course.price}}.00 </h4>
+					</div>
+					<div class="card-footer">
+						<a href="{{path('app_student_carshopping_add', {'code': course.id } )}}" class="btn btn-primary"> 
+						<i class="fa fa-shopping-cart"></i> Agregar a carrito </a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

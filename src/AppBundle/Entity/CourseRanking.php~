@@ -1,0 +1,74 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * CourseRanking
+ *
+ * @ORM\Table(name="course_ranking", indexes={@ORM\Index(name="course", columns={"course"}), @ORM\Index(name="student", columns={"student"}), @ORM\Index(name="course_2", columns={"course"}), @ORM\Index(name="student_2", columns={"student"})})
+ * @ORM\Entity
+ */
+class CourseRanking
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ranking", type="integer", nullable=false)
+     */
+    private $ranking;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="review", type="text", length=65535, nullable=false)
+     */
+    private $review;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="registered", type="datetime", nullable=false)
+     */
+    private $registered;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="status", type="integer", nullable=false)
+     */
+    private $status;
+
+    /**
+     * @var \Course
+     *
+     * @ORM\ManyToOne(targetEntity="Course")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="course", referencedColumnName="id")
+     * })
+     */
+    private $course;
+
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="student", referencedColumnName="id")
+     * })
+     */
+    private $student;
+
+
+}
+
