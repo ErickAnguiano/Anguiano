@@ -128,4 +128,15 @@ class CourseSection
     {
         return $this->course;
     }
+
+    /**
+     * @ORM\OneToMany(targetEntity="CourseActivity", mappedBy="section")
+    */
+
+    private $activities;
+
+
+    public function getActivities(){
+        return $this->activities;
+    }
 }

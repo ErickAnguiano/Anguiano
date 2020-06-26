@@ -8,7 +8,7 @@
 		<div class="col-lg-12">
 			<h1>{{ course.title }}</h1>
 		</div>
-		<div class="col-lg-6">
+		<div class="col-lg-4">
 			<div class="card">
 				<img class="card-img-top" src="{{asset('uploads/img/'~ course.image)}}">
 				<div class="card-body">
@@ -20,9 +20,34 @@
 				</div>	
 			</div>		
 		</div>
-	</div>				
+		
 
 
+		
+
+	<div class="col-lg-4">
+		{{ form_start(formSection) }}
+		{{ form_end(formSection) }}
+	</div>
+
+	<div class="col-lg-4">
+		{{ form_start(formActivity) }}
+		{{ form_end(formActivity) }}
+	</div>
+	<div class="col-lg-12">
+		<ul>
+			{% for section in course.sections %}
+				<li>
+					<h3>{{ section.title }}</h3>
+					<ul>
+					{% for activity in section.activities %}
+						<li>{{ activity.title }}</li>
+					{% endfor %}
+					</ul>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
 
 
 

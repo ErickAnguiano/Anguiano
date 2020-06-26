@@ -354,4 +354,16 @@ class Course
     {
         return $this->owner;
     }
+
+    /**
+     * @ORM\OneToMany(targetEntity="CourseSection", mappedBy="course")
+    */
+
+    private $sections;
+
+
+    public function getSections(){
+        return $this->sections;
+    }
+
 }

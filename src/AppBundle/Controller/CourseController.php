@@ -7,6 +7,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use AppBundle\Form\CourseType;
+use AppBundle\Entity\CourseSection;
+use AppBundle\Form\CourseSectionType;
+use AppBundle\Entity\CourseActivity;
+use AppBundle\Form\CourseActivityType;
+
 
 class CourseController extends Controller 
 {
@@ -132,8 +137,34 @@ class CourseController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$course = $em->getRepository('AppBundle:Course')->find($id);
 
+		$section = new CourseSection();
+		$formSection = $this->createForm(CourseSectionType::class, $section);
+		$formSection->handleRequest($request);
+
+		if ($formSection->isSubmitted()){
+			$section->setCourse($course);
+			$em->persist($section);
+			$em->flush();
+			$this->addFlash("success","Se registro la sección correctamente");
+			return $this->redirectToRoute('app_teacher_course_details',['id'=>$id]);
+		}
+
+		$activity = new CourseActivity();
+		$formActivity = $this->createForm(CourseActivityType::class, $activity);
+		$formActivity->handleRequest($request);
+
+		if ($formActivity->isSubmitted()){
+
+			$em->persist($activity);
+			$em->flush();
+			$this->addFlash("success","Se registro la actividad correctamente");
+			return $this->redirectToRoute('app_teacher_course_details',['id'=>$id]);
+		}
+
 		return $this->render('teacher/details_course.html.twig',[
-			'course' => $course
+			'course' => $course,
+			'formSection' => $formSection->createView(),
+			'formActivity' => $formActivity->createView()
 		]);
 
 	}
